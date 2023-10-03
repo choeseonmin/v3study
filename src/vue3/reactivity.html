@@ -1,18 +1,26 @@
-<div id="app"></div>
+<div id="app">
+<!--    여기 뭐가 렌더링 될 것임-->
+</div>
 
 <script>
     var data = {
-       a: 10
+       message : 10
+    }
 
+    function render(sth) {
+        var div = document.querySelector('#app');
+        div.innerHTML =  sth;
     }
 
     var app = new Proxy(data, {
-        set(){
+        set(target, prop, value){
             console.log('값 갱신')
 
         },
-        get() {
+        get(target, prop, newValue) {
             console.log('값 접근')
+            target[prop] = newValue;
+            render(newValue);
         }
     })
 </script>
