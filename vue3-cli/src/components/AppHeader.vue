@@ -1,9 +1,16 @@
 <template>
-  <h1>앱 헤더</h1>
+  <h1>{{apptitle}}</h1>
+  <button @click="changeTitle">변경</button>
 </template>
 
 <script>
 export default {
+  props: ['apptitle'],
+  methods: {
+    changeTitle() {
+      this.$emit('change');
+    }
+  }
 
 }
 </script>
