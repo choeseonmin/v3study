@@ -6,7 +6,8 @@
 </head>
 <div id = "app">
 <!--    div 태그에 속성 값을 태그 형식으로 추가를 해주어야 크롬창에 아웃풋 결과가 나온다.-->
-    <app-contents></app-contents>
+<!--    <app-contents v-on:이벤트 이름="상위 컴포넌트의 메서드 이름"></app-contents>-->
+    <app-contents v-on:refresh="showAlert"></app-contents>
 </div>
 
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -22,13 +23,20 @@
         </p>
         `,methods: {
             sendEvent() {
-                this.$emit('refresh')
+                this.$emit('refresh') //이벤트 이름을 refresh로 설정
             }
         }
     }
 
-
+    // 루트 컴포넌트
     Vue.createApp({
+        methods: {
+            showAlert() { //메서드 이름을 showalert로 지정하고 showalert의 기능을 alert 기능과 새로고침 문구가 뜨도록 설정
+                alert('새로고침');
+            }
+        },
+
+        // 컴포넌트 이름
         components: {
             // '컴포넌트 이름' : 컴포넌트 내용
             'app-contents': appContents
